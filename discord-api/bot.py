@@ -67,8 +67,8 @@ async def on_guild_join(guild):
 
 @bot.event
 async def on_guild_leave(guild):
-    await notifer.updateWelcomeMessage(disnake, bot, config)
-    await notifer.refreshStatus(disnake, bot, config)
+    await notifier.updateWelcomeMessage(disnake, bot, config)
+    await notifier.refreshStatus(disnake, bot, config)
 
 @bot.command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
 async def help_cmd(ctx, arg):

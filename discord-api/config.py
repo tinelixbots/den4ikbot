@@ -14,12 +14,13 @@ tokens = {
 
 config = {
     'name': 'Den4ik Bot',
-    'version': '0.0.1',
+    'version': '0.0.2',
     'version_date': '2022-08-18',
     'prefix': '+',
     'accent_def': 0x33b5e5,
     'accent_err': 0xff4444,
-    'owner_id': 951845579502280725, # Bot developer ID
+    'dev_id': 951845579502280725, # Bot developer ID
+    'codev_id': 741883312108339231, # Bot codeveloper ID
     'bugs_ch': 0,  # To show a bug report in the console, set the value to 0
 }
 

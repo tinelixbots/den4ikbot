@@ -19,9 +19,16 @@ async def generateEmbed(ctx, bot, config, links, language, disnake, translator, 
 
 async def editEmbed(ctx, bot, config, links, language, disnake, translator, python_version, uptime):
     try:
-        owner = bot.get_user(config['owner_id'])
-    except:
-        owner = None
+        dev = bot.get_user(config['dev_id'])
+    except Exception as e:
+        print(e)
+        dev = None
+
+    try:
+        codev = bot.get_user(config['codev_id'])
+    except Exception as e:
+        print(e)
+        codev = None
 
     plt_system = platform.system()
     plt_version = platform.version()
@@ -62,12 +69,17 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
     msg_embed.add_field(
         translator.translate('embed_fields', 'about_versf', language), translator.translate('embed_fields', 'about_versv', language).format(config['version'], config['version_date']), inline=True
     )
-    if(owner == None):
+    if(dev == None):
         pass
     else:
-        msg_embed.add_field(
-            translator.translate('embed_fields', 'about_devsf', language), translator.translate('embed_fields', 'about_devsv', language).format(owner.name, owner.discriminator), inline=True
-        )
+        if(codev == None):
+            msg_embed.add_field(
+                translator.translate('embed_fields', 'about_devsf', language), translator.translate('embed_fields', 'about_devsv', language).format(dev.name, dev.discriminator), inline=True
+            )
+        else:
+            msg_embed.add_field(
+                translator.translate('embed_fields', 'about_devsf2', language), translator.translate('embed_fields', 'about_devsv2', language).format(dev.name, dev.discriminator, codev.name, codev.discriminator), inline=True
+            )
     msg_embed.add_field(
         translator.translate('embed_fields', 'about_regdf', language), translator.translate('embed_fields', 'about_regdv', language).format(bot.user.created_at.strftime("%Y-%m-%d %H:%M:%S")), inline=True
     )
@@ -106,7 +118,7 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
             translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv', language).format(links['invite']), inline=True
         )
 
-    msg_embed.set_footer(text='Copyright © 2022 Dmitry Tretyakov (aka. Tinelix)')
+    msg_embed.set_footer(text='Copyright © 2022 Dmitry Tretyakov (aka. Tinelix) & Den4ik')
     return msg_embed
 
 async def sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime):
