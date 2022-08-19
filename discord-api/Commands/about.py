@@ -99,11 +99,19 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
 
     if(len(links['website']) > 0 and len(links['support']) > 0 and len(links['repo']) > 0):
         msg_embed.add_field(
-            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv5', language).format(links['invite'], links['support'], links['website'], links['repo']), inline=True
+            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv7', language).format(links['invite'], links['support'], links['website'], links['repo']), inline=True
+        )
+    elif(len(links['repo']) > 0 and len(links['support']) > 0):
+        msg_embed.add_field(
+            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv6', language).format(links['invite'], links['support'], links['repo']), inline=True
         )
     elif(len(links['website']) > 0 and len(links['support']) > 0):
         msg_embed.add_field(
-            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv4', language).format(links['invite'], links['support'], links['website']), inline=True
+            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv5', language).format(links['invite'], links['support'], links['website']), inline=True
+        )
+    elif(len(links['support']) > 0):
+        msg_embed.add_field(
+            translator.translate('embed_fields', 'about_linksf', language), translator.translate('embed_fields', 'about_linksv4', language).format(links['invite'], links['support']), inline=True
         )
     elif(len(links['repo']) > 0):
         msg_embed.add_field(

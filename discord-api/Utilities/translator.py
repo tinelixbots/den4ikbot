@@ -27,7 +27,7 @@ def translate(where, str, language):
                 }
             elif where == "embed_description":
                 locale = {
-                    'help': '{0} - простейший и компактный бот для Discord.\r\n[Пригласить]({1})',
+                    'help': '{0} - простейший и компактный бот для Discord. На базе [Microbot](https://github.com/tinelix/microbot) от Tinelix.\r\n[Пригласить]({1})',
                     'error_unf': '😔 Пользователь не найден. Попробуйте найти другого пользователя.',
                     'bug_reporter': '🪲 Да, у нас и такое случается. Но ничего страшного, сейчас отправим разработчикам на исправление этого бага.',
                     'forbidden': '🚫 Вы не имеете права пользоваться этой командой!',
@@ -66,8 +66,10 @@ def translate(where, str, language):
                     'about_linksv': '[Пригласить]({0})',
                     'about_linksv2': '[Пригласить]({0})\r\n[Сайт]({1})',
                     'about_linksv3': '[Пригласить]({0})\r\n[Исходный код]({1}) (Apache License 2.0 & AGPL 3.0+)',
-                    'about_linksv4': '[Пригласить]({0})\r\n[Сервер поддержки]({1})\r\n[Сайт]({2})',
-                    'about_linksv5': '[Пригласить]({0})\r\n[Сервер поддержки]({1})\r\n[Сайт]({2})\r\n[Исходный код]({3}) (Apache License 2.0 & AGPL 3.0+)',
+                    'about_linksv4': '[Пригласить]({0})\r\n[Сервер поддержки]({1})',
+                    'about_linksv5': '[Пригласить]({0})\r\n[Сервер поддержки]({1})\r\n[Сайт]({2})',
+                    'about_linksv6': '[Пригласить]({0})\r\n[Сервер поддержки]({1})\r\n[Исходный код]({3}) (Apache License 2.0 & AGPL 3.0+)',
+                    'about_linksv7': '[Пригласить]({0})\r\n[Сервер поддержки]({1})\r\n[Сайт]({2})\r\n[Исходный код]({3}) (Apache License 2.0 & AGPL 3.0+)',
                     'user_nickf': 'Псевдоним',
                     'user_nickv': '{0}',
                     'user_nickvn': '*Отсутствует*',
@@ -180,7 +182,7 @@ def translate(where, str, language):
                 }
             elif where == "embed_description":
                 locale = {
-                    'help': '{0} - is a simple and compact bot for Discord.\r\n[Invite]({1})',
+                    'help': '{0} - is a simple and compact bot for Discord. Based on [Microbot](https://github.com/tinelix/microbot) by Tinelix\r\n[Invite]({1})',
                     'error_unf': '😔 User not found. Try to find another user.',
                     'bug_reporter': '🪲 Yep, this happens to us too. But it\'s okay, now we\'ll send it to the developers to fix this bug.',
                     'forbidden': '🚫 You do not have the right to use this command!',
@@ -215,9 +217,11 @@ def translate(where, str, language):
                     'about_linksf': 'Links',
                     'about_linksv': '[Invite]({0})',
                     'about_linksv2': '[Invite]({0})\r\n[Website]({1})',
-                    'about_linksv3': '[Invite]({0})\r\n[Support server](https://discord.gg/{1})\r\n[Website]({2})',
-                    'about_linksv4': '[Invite]({0})\r\n[Support server](https://discord.gg/{1})\r\n[Website]({2})\r\n[Repository]({3}) (Apache License 2.0 & AGPL 3.0+)',
-                    'about_linksv': '{0}',
+                    'about_linksv3': '[Invite]({0})\r\n[Repository]({1}) (Apache License 2.0 & AGPL 3.0+)',
+                    'about_linksv4': '[Invite]({0})\r\n[Support server]({1})',
+                    'about_linksv5': '[Invite]({0})\r\n[Support server](https://discord.gg/{1})\r\n[Website]({2})',
+                    'about_linksv6': '[Invite]({0})\r\n[Support server](https://discord.gg/{1})\r\n[Repository]({3}) (Apache License 2.0 & AGPL 3.0+)',
+                    'about_linksv7': '[Invite]({0})\r\n[Support server](https://discord.gg/{1})\r\n[Website]({2})\r\n[Repository]({3}) (Apache License 2.0 & AGPL 3.0+)',
                     'user_nickf': 'Nickname',
                     'user_nickv': '{0}',
                     'user_nickvn': '*Missing*',
