@@ -60,8 +60,8 @@ async def on_disconnect():
 
 @bot.event
 async def on_guild_join(guild):
-    await notifer.refreshStatus(disnake, bot, config)
-    await notifer.updateWelcomeMessage(disnake, bot, config)
+    await notifier.refreshStatus(disnake, bot, config)
+    await notifier.updateWelcomeMessage(disnake, bot, config)
     if(await db.if_guild_existed(database, cursor, guild.id) == False):
         await db.add_guild_value(database, guild, cursor)
 

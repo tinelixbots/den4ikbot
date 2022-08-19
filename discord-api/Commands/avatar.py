@@ -3,6 +3,13 @@ import re
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
     query = int(re.search(r'\d+', arg).group())
     user = bot.get_user(query)
+    if(user == None):
+        msg_embed = disnake.Embed(
+            description=translator.translate('embed_description', 'error_unf', language),
+            colour=config['accent_err'],
+        )
+        msg_embed.set_author(name=str(translator.translate('embed_title', 'error', language)))
+        return await ctx.send(embed=msg_embed)
     member = ctx.guild.get_member(query)
     msg_embed = disnake.Embed(
         colour=config['accent_def'],
