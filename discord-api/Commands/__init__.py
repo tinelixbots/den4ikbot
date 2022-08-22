@@ -12,3 +12,4 @@ import Commands.rngen
 import Commands.guild
 import Commands.calc
 import Commands.ping
+import Commands.settings

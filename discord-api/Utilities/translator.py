@@ -24,6 +24,7 @@ def translate(where, str, language):
                     'rngen': '🎱 Генератор случайных чисел',
                     'calc': '🔢 Калькулятор',
                     'ping': '🏓 Понг!',
+                    'settings': '⚙ Настройки',
                 }
             elif where == "embed_description":
                 locale = {
@@ -110,6 +111,8 @@ def translate(where, str, language):
                     'ping_statisticsf': 'Статистика',
                     'ping_statisticsv': '**Задержка:** {0} мсек',
                     'ping_statisticsv2': '**Задержка:** {0} мсек\r\n**Время выполнения:** {1} мсек',
+                    'settings_availoptf': 'Доступные параметры',
+                    'settings_availoptv': '🚩 Язык (Language)',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -177,6 +180,7 @@ def translate(where, str, language):
                     'eval': '⌨ Interpreter',
                     'calc': '🔢 Calculator',
                     'ping': '🏓 Pong!',
+                    'settings': '⚙ Settings',
                 }
             elif where == "embed_description":
                 locale = {
@@ -185,6 +189,8 @@ def translate(where, str, language):
                     'bug_reporter': '🪲 Yep, this happens to us too. But it\'s okay, now we\'ll send it to the developers to fix this bug.',
                     'forbidden': '🚫 You do not have the right to use this command!',
                     'please_wait': '⌛ Wait...',
+                    'settings': '**Server settings:** 🇺🇸',
+                    'settings_done': '✅ Done!',
                 }
             elif where == "embed_fields":
                 locale = {
@@ -250,6 +256,11 @@ def translate(where, str, language):
                     '8ball_answv': ['Yes.', 'No.', 'Maybe.', 'Time will tell.', 'Wait and see.', 'Unlikely.', 'Of course.', 'Yep.', 'Nope.', 'And there is.', 'I have no idea.', 'I don\'t know', 'No idea.', 'Maybe yes...', 'Maybe no...', 'Who knows!', 'I didn\'t understand your question, can you repeat?', 'Try asking a different question. Maybe I don\'t understand something?', 'Probably.', 'Nothing like this.'],
                     'rngen_numbf': 'Number',
                     'rngen_numbv': '{0}',
+                    'ping_statisticsf': 'Statistics',
+                    'ping_statisticsv': '**Latency:** {0} msec',
+                    'ping_statisticsv2': '**Latency:** {0} msec\r\n**Execution time:** {1} msec',
+                    'settings_availoptf': 'Available options',
+                    'settings_availoptv': '🚩 Язык (Language)',
                 }
             elif where == "command_description":
                 locale = {

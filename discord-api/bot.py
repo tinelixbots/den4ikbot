@@ -27,7 +27,7 @@ from Utilities import *
 from config import *
 
 intents = disnake.Intents.all()
-bot = commands.Bot(command_prefix=config['prefix'], intents=intents, sync_commands=True)
+bot = commands.Bot(command_prefix=config['prefix'], intents=intents, sync_commands_debug=True)
 bot.remove_command('help')
 
 language = 'ru_RU'
@@ -73,63 +73,87 @@ async def on_guild_leave(guild):
 @bot.command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
 async def help_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
     await help.sendCmdHelpMsg(ctx, bot, links, config, language, disnake, translator, arg)
 
 @bot.slash_command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
 async def help_scmd(ctx):
     guild_data = await sync_db(ctx, 'guilds', 'slash')
+    language = guild_data[1]
     await help.sendSlashMsg(ctx, bot, config, links, language, disnake, translator)
 
 @bot.command(name="about", description=translator.translate('command_description', 'about', 'en_US'), aliases=['state', 'check'])
 async def about_cmd(ctx):
     uptime = str(datetime.timedelta(seconds=int(round(time.time()-connectionStartTime))))
     guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
     await about.sendRegularMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
 
 @bot.slash_command(name="about", description=translator.translate('command_description', 'about', 'en_US'))
 async def about_scmd(ctx):
     uptime = str(datetime.timedelta(seconds=int(round(time.time()-connectionStartTime))))
     guild_data = await sync_db(ctx, 'guilds', 'slash')
+    language = guild_data[1]
     await about.sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
 
 @bot.command(name="user", description=translator.translate('command_description', 'user', 'en_US'), aliases=['member'])
 async def user_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
     await user.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.slash_command(name="user", description=translator.translate('command_description', 'user', 'en_US'))
 async def user_scmd(ctx, member):
     guild_data = await sync_db(ctx, 'guilds', 'slash')
+    language = guild_data[1]
     await user.sendSlashMsg(ctx, bot, config, language, disnake, translator, member)
 
 @bot.command(name="avatar", description=translator.translate('command_description', 'avatar', 'en_US'))
 async def avatar_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
     await avatar.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.slash_command(name="avatar", description=translator.translate('command_description', 'avatar', 'en_US'))
 async def avatar_scmd(ctx, member):
     guild_data = await sync_db(ctx, 'guilds', 'slash')
+    language = guild_data[1]
     await avatar.sendSlashMsg(ctx, bot, config, language, disnake, translator, member)
 
 @bot.command(name="8ball", description=translator.translate('command_description', '8ball', 'en_US'))
 async def eightball_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
     await eightball.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.slash_command(name="8ball", description=translator.translate('command_description', '8ball', 'en_US'))
 async def eightball_scmd(ctx, question):
     guild_data = await sync_db(ctx, 'guilds', 'slash')
+    language = guild_data[1]
     await eightball.sendSlashMsg(ctx, bot, config, language, disnake, translator, question)
 
-@bot.command(name="rngen", description=translator.translate('command_description', 'rngen', 'en_US'), aliases=['rand'])
-async def rngen_cmd(ctx, arg):
+@bot.command(name="ping", description=translator.translate('command_description', 'ping', 'en_US'))
+async def ping_cmd(ctx):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
-    await rngen.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
+    language = guild_data[1]
+    await ping.sendRegularMsg(ctx, bot, config, language, disnake, translator)
+
+@bot.slash_command(name="ping", description=translator.translate('command_description', 'ping', 'en_US'))
+async def ping_scmd(ctx):
+    guild_data = await sync_db(ctx, 'guilds', 'slash')
+    language = guild_data[1]
+    await ping.sendSlashMsg(ctx, bot, config, language, disnake, translator)
+
+@bot.command(name="rngen", description=translator.translate('command_description', 'rngen', 'en_US'))
+async def rngen_cmd(ctx):
+    guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
+    await rngen.sendRegularMsg(ctx, bot, config, language, disnake, translator)
 
 @bot.slash_command(name="rngen", description=translator.translate('command_description', 'rngen', 'en_US'))
 async def rngen_scmd(ctx, range):
     guild_data = await sync_db(ctx, 'guilds', 'slash')
+    language = guild_data[1]
     await rngen.sendSlashMsg(ctx, bot, config, language, disnake, translator, range)
 
 @bot.command(name="eval")
@@ -138,10 +162,16 @@ async def eval_cmd(ctx, arg):
     language = guild_data[1]
     await eval.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
+@bot.command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
+async def settings_cmd(ctx, *arg):
+    guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
+    await settings.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg, db, database, cursor)
 
 @bot.event
 async def on_command_error(ctx, error):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
     if isinstance(error, commands.MissingRequiredArgument):
         if(ctx.message.content == '{0}help'.format(config['prefix'])):
             await help.sendRegularMsg(ctx, bot, config, links, language, disnake, translator)
