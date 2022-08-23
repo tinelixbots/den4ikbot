@@ -35,7 +35,7 @@ user_col = None
 guild_col = None
 connectionStartTime = time.time()
 
-bot.commands_list = ['help', 'about', 'user', 'guild', 'avatar', '8ball', 'rngen', 'calc', 'ping' 'settings']
+bot.commands_list = ['help', 'about', 'user', 'guild', 'avatar', '8ball', 'rngen', 'calc', 'ping', 'settings']
 
 try:
     database = sqlite3.connect('Database/main.db')
