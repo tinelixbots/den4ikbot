@@ -1,5 +1,7 @@
-# Microbot Discord bot
-# Repo: https://github.com/tinelix/microbot
+# Den4ik Bot
+# Created by tretdm (aka. tinelix) at 2022-08-18 from Den4ik
+# Repo: https://github.com/den4ikbot/den4ikbot
+# Based on Microbot Discord bot: https://github.com/tinelix/microbot.
 # Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
 
 import cpuinfo # for install 'pip install py-cpuinfo'
@@ -10,7 +12,7 @@ name = 'eval'
 hidden = True
 
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
-    if(ctx.message.author.id == config['dev_id']):  # only bot owner!
+    if(ctx.message.author.id == config['dev_id'] or ctx.message.author.id == config['codev_id']):  # only bot owner!
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         )
