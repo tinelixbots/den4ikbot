@@ -15,7 +15,7 @@ async def generateEmbed(ctx, bot, config, links, language, disnake, translator):
         description=str(translator.translate('embed_description', 'help', language)).format(config['name'], links['invite']),
         colour=config['accent_def']
     ).add_field(
-        translator.translate('embed_fields', 'help_preff', language), translator.translate('embed_fields', 'help_prefv', language), inline=False
+        translator.translate('embed_fields', 'help_preff', language), translator.translate('embed_fields', 'help_prefv', language).format(config['prefix']), inline=False
     ).add_field(
         translator.translate('embed_fields', 'help_cmdsf', language), commands_list, inline=False
     )

@@ -40,7 +40,7 @@ def translate(where, str, language):
             elif where == "embed_fields":
                 locale = {
                     'help_preff': 'Префиксы',
-                    'help_prefv': '`>` или `/`',
+                    'help_prefv': '`{0}` или `/`',
                     'help_cmdsf': 'Команды',
                     'help_cmdsv': '{0}',
                     'help_exampf': 'Пример',
@@ -196,7 +196,7 @@ def translate(where, str, language):
             elif where == "embed_fields":
                 locale = {
                     'help_preff': 'Prefixes',
-                    'help_prefv': '`>` or `/`',
+                    'help_prefv': '`{0}` or `/`',
                     'help_cmdsf': 'Commands',
                     'help_cmdsv': '{0}',
                     'help_exampf': 'Examples',
