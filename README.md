@@ -2,7 +2,7 @@
 Den4ik Bot - Disnake-bot based on [Tinelix Microbot](https://github.com/tinelix/microbot)
 
 ### Installation manual (for Discord)
-1. Download or clone this repository with Git: `git clone https://github.com/tinelix/microbot.git`
+1. Download or clone this repository with Git: `git clone https://github.com/den4ik/den4ikbot.git`
 2. In `discord_api` folder, create `Database` required folder for SQLite DB storage.
 3. If running Windows, in `discord.bat` file, replace `your_token_here` to your Discord bot token. Or if running Linux or UNIX-like OS, in `discord.sh` file, replace `your_token_here` to your Discord bot token. 
 
