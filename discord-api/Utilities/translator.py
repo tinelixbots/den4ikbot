@@ -295,6 +295,7 @@ def translate(where, str, language):
                     'rngen': '```{0}rngen [beginning of range]-[end of range]```',
                     'guild': '```{0}guild```',
                     'calc': '```{0}calc [expression]```',
+                    'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                     'ping': '```{0}ping```',
                 }
             elif where == "button":
