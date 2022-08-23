@@ -1,10 +1,16 @@
+# Microbot Discord bot
+# Repo: https://github.com/tinelix/microbot
+# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
+
 import cpuinfo # for install 'pip install py-cpuinfo'
 import psutil
 import platform
 
+name = 'eval'
+hidden = True
+
 async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
-    if(ctx.message.author.id == config['dev_id']) or (ctx.message.author.id == config['codev_id']):
-        # only bot developer (owner) and bot co-developer!
+    if(ctx.message.author.id == config['dev_id']):  # only bot owner!
         msg_embed = disnake.Embed(
             colour=config['accent_def'],
         )
@@ -17,7 +23,8 @@ async def generateEmbed(ctx, bot, config, language, disnake, translator, arg):
                     if(str(member.status) == 'online' or str(member.status) == 'idle' or str(member.status) == 'dnd'):
                         online += 1
                 eval_r += '{0:03d}. {1}\r\n└────┤ {2: 4d} members │ {3: 4d} online │\r\n'.format(bot.guilds.index(guild) + 1, guild.name, guild.member_count, online)
-
+        elif("token" in arg):
+            eval_r = 'https://www.youtube.com/watch?v=2bXP5VNukmY'
         else:
             if(len(str(eval(arg))) > 1000):
                 eval_r = 'Content is too large (> 1000 symbols)'

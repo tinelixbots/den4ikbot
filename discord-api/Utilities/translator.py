@@ -42,7 +42,7 @@ def translate(where, str, language):
                     'help_preff': 'Префиксы',
                     'help_prefv': '`>` или `/`',
                     'help_cmdsf': 'Команды',
-                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc` `ping` `settings`',
+                    'help_cmdsv': '{0}',
                     'help_exampf': 'Пример',
                     'help_aliasf': 'Аналогичные названия',
                     'eval_codelf': 'Листинг',
@@ -140,6 +140,7 @@ def translate(where, str, language):
                     'rngen': '```{0}rngen [начало диапазона]-[конец диапазона]```',
                     'guild': '```{0}guild```',
                     'ping': '```{0}ping```',
+                    'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
                 }
             elif where == "button":
                 locale = {
@@ -197,7 +198,7 @@ def translate(where, str, language):
                     'help_preff': 'Prefixes',
                     'help_prefv': '`>` or `/`',
                     'help_cmdsf': 'Commands',
-                    'help_cmdsv': '`help` `about` `user` `guild` `avatar` `8ball` `rngen` `calc` `ping` `settings`',
+                    'help_cmdsv': '{0}',
                     'help_exampf': 'Examples',
                     'help_aliasf': 'Aliases',
                     'eval_codelf': 'Code listing',
