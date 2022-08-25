@@ -18,11 +18,11 @@ async def showWelcomeMessage(disnake, bot, config):
     statuses = ["{0} guilds".format(len(bot.guilds)), "{0}help".format(config['prefix']), "Version {0}".format(config['version'])]
     statuses_cycle = cycle(statuses)
     game = disnake.Game(statuses[0], type=disnake.ActivityType.watching)
-    await bot.change_presence(status=disnake.Status.dnd, activity=game)
+    await bot.change_presence(status=disnake.Status.online, activity=game)
     @tasks.loop(seconds=10)
     async def autostatus():
         await bot.wait_until_ready()
-        await bot.change_presence(status=disnake.Status.dnd, activity=disnake.Game(name=next(statuses_cycle)))
+        await bot.change_presence(status=disnake.Status.online, activity=disnake.Game(name=next(statuses_cycle)))
     autostatus.start()
 
 async def updateWelcomeMessage(disnake, bot, config):
