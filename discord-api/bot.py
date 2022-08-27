@@ -26,17 +26,7 @@ from Utilities import *
 # 4. Importing bot configuration
 from config import *
 
-intents = disnake.Intents.all()
-bot = commands.Bot(command_prefix=config['prefix'], intents=intents, sync_commands_debug=True)
-bot.remove_command('help')
-
-language = 'ru_RU'
-user_col = None
-guild_col = None
-connectionStartTime = time.time()
-
-bot.commands_list = ['help', 'about', 'user', 'guild', 'avatar', '8ball', 'rngen', 'calc', 'ping', 'settings']
-
+# 5. Initializing SQLite3 server
 try:
     database = sqlite3.connect('Database/main.db')
     print(" SQLite datebase connected!")
@@ -44,12 +34,36 @@ try:
 except sqlite3.Error as e:
     print(" Exception: {0}".format(e))
 
-# 5. Globally blocking all DMs
-@bot.check
-async def no_DM(ctx):
-    return ctx.guild is not None
+# 6. Getting custom guild prefix
+prefixes = {}
 
-# 6. Events and message triggers
+async def get_guild_prefix(bot, message):
+    cursor.execute("SELECT id, prefix FROM guilds;")
+    guild_data = cursor.fetchall()
+    for guild in guild_data:
+        if message.guild.id == guild[0]:
+            prefixes[f'{guild[0]}'] = guild[1]
+    try:
+        if(prefixes[f'{message.guild.id}']):
+            return [config['prefix'], prefixes[f'{message.guild.id}']]
+        else:
+            return config['prefix']
+    except Exception as e:
+        return config['prefix']
+
+# 7. Creating Discord bot instance with all intents
+intents = disnake.Intents.all()
+bot = commands.Bot(command_prefix=get_guild_prefix, intents=intents, sync_commands_debug=True)
+bot.remove_command('help')
+
+bot.commands_list = ['help', 'about', 'user', 'guild', 'avatar', '8ball', 'rngen', 'calc', 'ping', 'settings']
+
+language = 'ru_RU'
+user_col = None
+guild_col = None
+connectionStartTime = time.time()
+
+# 8. Events and message triggers
 @bot.event
 async def on_ready():
     connectionStartTime = time.time()
@@ -65,7 +79,7 @@ async def on_guild_join(guild):
     await notifier.refreshStatus(disnake, bot, config)
     await notifier.updateWelcomeMessage(disnake, bot, config)
     if(await db.if_guild_existed(database, cursor, guild.id) == False):
-        await db.add_guild_value(database, guild, cursor)
+        await db.add_guild_value(config, database, guild, cursor)
 
 @bot.event
 async def on_guild_leave(guild):
@@ -73,6 +87,7 @@ async def on_guild_leave(guild):
     await notifier.refreshStatus(disnake, bot, config)
 
 @bot.command(name="help", description=translator.translate('command_description', 'help', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def help_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
@@ -85,6 +100,7 @@ async def help_scmd(ctx):
     await help.sendSlashMsg(ctx, bot, config, links, language, disnake, translator)
 
 @bot.command(name="about", description=translator.translate('command_description', 'about', 'en_US'), aliases=['state', 'check'])
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def about_cmd(ctx):
     uptime = str(datetime.timedelta(seconds=int(round(time.time()-connectionStartTime))))
     guild_data = await sync_db(ctx, 'guilds', 'regular')
@@ -99,6 +115,7 @@ async def about_scmd(ctx):
     await about.sendSlashMsg(ctx, bot, config, links, language, disnake, translator, python_version, uptime)
 
 @bot.command(name="user", description=translator.translate('command_description', 'user', 'en_US'), aliases=['member'])
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def user_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
@@ -111,6 +128,7 @@ async def user_scmd(ctx, member):
     await user.sendSlashMsg(ctx, bot, config, language, disnake, translator, member)
 
 @bot.command(name="avatar", description=translator.translate('command_description', 'avatar', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def avatar_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
@@ -123,6 +141,7 @@ async def avatar_scmd(ctx, member):
     await avatar.sendSlashMsg(ctx, bot, config, language, disnake, translator, member)
 
 @bot.command(name="8ball", description=translator.translate('command_description', '8ball', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def eightball_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
@@ -147,6 +166,7 @@ async def ping_scmd(ctx):
     await ping.sendSlashMsg(ctx, bot, config, language, disnake, translator)
 
 @bot.command(name="rngen", description=translator.translate('command_description', 'rngen', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def rngen_cmd(ctx):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
@@ -159,12 +179,14 @@ async def rngen_scmd(ctx, range):
     await rngen.sendSlashMsg(ctx, bot, config, language, disnake, translator, range)
 
 @bot.command(name="eval")
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def eval_cmd(ctx, arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
     await eval.sendRegularMsg(ctx, bot, config, language, disnake, translator, arg)
 
 @bot.command(name="settings", description=translator.translate('command_description', 'settings', 'en_US'))
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def settings_cmd(ctx, *arg):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
@@ -174,22 +196,30 @@ async def settings_cmd(ctx, *arg):
 async def on_command_error(ctx, error):
     guild_data = await sync_db(ctx, 'guilds', 'regular')
     language = guild_data[1]
+    custom_prefix = ''
+    for prefix in await bot.get_prefix(ctx.message):
+        if(ctx.message.content.startswith(prefix)):
+            custom_prefix = prefix
     if isinstance(error, commands.MissingRequiredArgument):
-        if(ctx.message.content == '{0}help'.format(config['prefix'])):
+        if(ctx.message.content == '{0}help'.format(config['prefix']) or ctx.message.content == '{0}help'.format(custom_prefix)):
             await help.sendRegularMsg(ctx, bot, config, links, language, disnake, translator)
+        elif(ctx.message.content == '{0}timers'.format(config['prefix']) or ctx.message.content == '{0}timers'.format(custom_prefix)):
+            await timers.sendRegularMsgWithoutArgs(ctx, bot, config, language, disnake, translator, db, database, cursor)
         else:
             await help.sendCmdHelpWithoutArgs(ctx, bot, config, language, disnake, translator)
     elif isinstance(error, commands.CommandNotFound):
         pass
+    elif isinstance(error, commands.CommandOnCooldown):
+        await ctx.message.add_reaction('🥸')
     else:
         error_list = []
         error_text = "".join(traceback.TracebackException.from_exception(error).format())
         if(config['bugs_ch'] > 0):
             await bugreporter.send(ctx, bot, config, language, disnake, translator, error_text)
         else:
-            pass
+            print(' BUGREPORT:\r\n{0}'.format(error_text))
 
-# 7. Database autosynchronization
+# 9. Database autosynchronization
 async def sync_db(ctx, table, message_type):
     if(message_type == 'regular'):
         cursor = database.cursor()
@@ -208,7 +238,7 @@ async def sync_db(ctx, table, message_type):
             guild_data = cursor.fetchone()
         else:
             language = 'en_US'
-            await db.add_guild_value(database, ctx.message.guild, cursor)
+            await db.add_guild_value(config, database, ctx.message.guild, cursor)
             cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.message.guild.id))
             guild_data = cursor.fetchone()
         if(table == 'guilds'):
@@ -232,7 +262,7 @@ async def sync_db(ctx, table, message_type):
             guild_data = cursor.fetchone()
         else:
             language = 'en_US'
-            await db.add_guild_value(database, ctx.guild, cursor)
+            await db.add_guild_value(config, database, ctx.guild, cursor)
             cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.guild.id))
             guild_data = cursor.fetchone()
         if(table == 'guilds'):

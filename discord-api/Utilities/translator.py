@@ -40,7 +40,7 @@ def translate(where, str, language):
             elif where == "embed_fields":
                 locale = {
                     'help_preff': 'Префиксы',
-                    'help_prefv': '`{0}` или `/`',
+                    'help_prefv': '{0} или `/`',
                     'help_cmdsf': 'Команды',
                     'help_cmdsv': '{0}',
                     'help_exampf': 'Пример',
@@ -112,7 +112,7 @@ def translate(where, str, language):
                     'ping_statisticsv': '**Задержка:** {0} мсек',
                     'ping_statisticsv2': '**Задержка:** {0} мсек\r\n**Время выполнения:** {1} мсек',
                     'settings_availoptf': 'Доступные параметры',
-                    'settings_availoptv': '🚩 Язык (Language)',
+                    'settings_availoptv': '🚩 Язык (Language)\r\n🪄 Префикс',
                 }
             elif where == "embed_footer":
                 locale = {
@@ -190,7 +190,7 @@ def translate(where, str, language):
                     'bug_reporter': '🪲 Yep, this happens to us too. But it\'s okay, now we\'ll send it to the developers to fix this bug.',
                     'forbidden': '🚫 You do not have the right to use this command!',
                     'please_wait': '⌛ Wait...',
-                    'settings': '**Server settings:** 🇺🇸',
+                    'settings': '**Server settings:** 🇺🇸 | {0}',
                     'settings_done': '✅ Done!',
                 }
             elif where == "embed_fields":
@@ -261,7 +261,7 @@ def translate(where, str, language):
                     'ping_statisticsv': '**Latency:** {0} msec',
                     'ping_statisticsv2': '**Latency:** {0} msec\r\n**Execution time:** {1} msec',
                     'settings_availoptf': 'Available options',
-                    'settings_availoptv': '🚩 Язык (Language)',
+                    'settings_availoptv': '🚩 Язык (Language)\r\n🪄 Prefix',
                 }
             elif where == "command_description":
                 locale = {
@@ -296,6 +296,7 @@ def translate(where, str, language):
                     'guild': '```{0}guild```',
                     'calc': '```{0}calc [expression]```',
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
+                    'settings_prefix': '```{0}settings -P m!```',
                     'ping': '```{0}ping```',
                 }
             elif where == "button":
