@@ -141,6 +141,7 @@ def translate(where, str, language):
                     'guild': '```{0}guild```',
                     'ping': '```{0}ping```',
                     'settings_lang': '```{0}settings -L [en_US / ru_RU]\r\n{0}settings -L ru_RU```',
+                    'settings_prefix': '```{0}settings -P m!```',
                 }
             elif where == "button":
                 locale = {
