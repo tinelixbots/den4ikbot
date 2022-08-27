@@ -17,7 +17,7 @@ config = {
     'version': '0.2.0',
     'version_date': '2022-08-27',
     'prefix': '+',
-    'accent_def': 0x33b5e5,
+    'accent_def': 0xa55bfd,
     'accent_err': 0xff4444,
     'dev_id': 951845579502280725, # Bot developer ID
     'codev_id': 741883312108339231, # Bot codeveloper ID
