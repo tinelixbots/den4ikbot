@@ -1,6 +1,8 @@
-# Microbot Discord bot
-# Repo: https://github.com/tinelix/microbot
-# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher
+# Den4ik Bot
+# Created by tretdm (aka. tinelix) at 2022-08-18 from Den4ik
+# Repo: https://github.com/den4ikbot/den4ikbot
+# Based on Microbot Discord bot: https://github.com/tinelix/microbot.
+# Licensed under Apache License v2.0 & GNU Affero General Public License v3.0 and higher.
 
 import re
 
