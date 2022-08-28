@@ -126,6 +126,19 @@ async def user_scmd(ctx, member):
     language = guild_data[1]
     await user.sendSlashMsg(ctx, bot, config, language, disnake, translator, member)
 
+@bot.command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'), aliases=['server'])
+@commands.cooldown(1, config['cooldown'], commands.BucketType.user)
+async def guild_cmd(ctx):
+    guild_data = await sync_db(ctx, 'guilds', 'regular')
+    language = guild_data[1]
+    await guild.sendRegularMsg(ctx, bot, config, language, disnake, translator)
+
+@bot.slash_command(name="guild", description=translator.translate('command_description', 'guild', 'en_US'))
+async def guild_scmd(ctx):
+    guild_data = await sync_db(ctx, 'guilds', 'slash')
+    language = guild_data[1]
+    await guild.sendSlashMsg(ctx, bot, config, language, disnake, translator)
+
 @bot.command(name="avatar", description=translator.translate('command_description', 'avatar', 'en_US'))
 @commands.cooldown(1, config['cooldown'], commands.BucketType.user)
 async def avatar_cmd(ctx, arg):
