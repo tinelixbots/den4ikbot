@@ -14,12 +14,12 @@ tokens = {
 
 config = {
     'name': 'Den4ik Bot',
-    'version': '0.2.1',
-    'version_date': '2022-08-28',
+    'version': '0.3.0',
+    'version_date': '2022-08-29',
     'prefix': '+',
     'accent_def': 0xa55bfd,
     'accent_err': 0xff4444,
-    'dev_id': 951845579502280725, # Bot developer ID
+    'dev_id': 996078160141631530, # Bot developer ID
     'codev_id': 741883312108339231, # Bot codeveloper ID
     'bugs_ch': 0,  # To show a bug report in the console, set the value to 0
     'cooldown': 1.5
