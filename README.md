@@ -1,5 +1,5 @@
-# den4ikbot
-Den4ik Bot - Disnake-bot based on [Tinelix Microbot](https://github.com/tinelix/microbot)
+# Den4ik Bot
+Disnake-bot based on [Tinelix Microbot](https://github.com/tinelix/microbot)
 
 ### Installation manual (for Discord)
 1. Download or clone this repository with Git: `git clone https://github.com/den4ik/den4ikbot.git`
@@ -13,7 +13,7 @@ Den4ik Bot - Disnake-bot based on [Tinelix Microbot](https://github.com/tinelix/
 Apache License 2.0 & GNU Affero GPL 3.0 (or higher)
 
 ### Contacts 
-Discord: `Den4ik#6075` and `tretdm#9877`
+Discord: `Den4ik2#5203` and `tretdm#9877`
 
 Telegram: `@tretdm`
 
