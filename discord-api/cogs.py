@@ -199,7 +199,7 @@ class Listeners(commands.Cog):
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
         if(await db.if_guild_existed(self.bot.database, self.bot.cursor, guild.id) == False):
-            await db.add_guild_value(self.bot.database, guild, self.bot.cursor)
+            await db.add_guild_value(config, self.bot.database, guild, self.bot.cursor)
 
     @commands.Cog.listener()
     async def on_guild_leave(guild):
@@ -272,7 +272,7 @@ async def sync_db(bot, ctx, table, message_type):
                 guild_data = cursor.fetchone()
             else:
                 language = 'en_US'
-                await db.add_guild_value(bot.database, ctx.guild, cursor)
+                await db.add_guild_value(config, bot.database, ctx.guild, cursor)
                 cursor.execute("SELECT * FROM guilds WHERE id='{0}';".format(ctx.guild.id))
                 guild_data = cursor.fetchone()
             if(table == 'guilds'):
