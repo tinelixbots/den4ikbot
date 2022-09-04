@@ -124,7 +124,16 @@ def translate(where, str, language):
                 }
             elif where == "embed_footer":
                 locale = {
-                    '8ball': 'Все совпадения случайны!'
+                    '8ball': 'Все совпадения случайны!',
+                    'help': 'Версия {0}',
+                }
+            elif where == "command_categories":
+                locale = {
+                    'main': '🤖 Главное',
+                    'fun': '🎭 Развлечения',
+                    'interactivity': '🌐 Интерактивность',
+                    'personalization': '🎨 Персонализация',
+                    'other': '*️⃣ Другое'
                 }
             elif where == "command_description":
                 locale = {
@@ -280,6 +289,18 @@ def translate(where, str, language):
                     'settings_availoptf': 'Available options',
                     'settings_availoptv': '🚩 Язык (Language)\r\n🪄 Prefix',
                 }
+            elif where == "embed_footer":
+                locale = {
+                    '8ball': 'All matches are random!'
+                }
+            elif where == "command_categories":
+                locale = {
+                    'main': '🤖 Main',
+                    'fun': '🎭 Fun',
+                    'interactivity': '🌐 Interactivity',
+                    'personalization': '🎨 Personization',
+                    'other': '*️⃣ Other'
+                }
             elif where == "command_description":
                 locale = {
                     'help': 'Shows help information including a list of available commands.',
@@ -297,10 +318,6 @@ def translate(where, str, language):
                     'weather': 'Displays the weather forecast for the next 24 hours. This is done using the [OpenWeatherMap](https://openweathermap.org) service.',
                     'wiki': 'Displays a Wikipedia article in short form.',
                     'codec': 'Decoding and coding of text.'
-                }
-            elif where == "embed_footer":
-                locale = {
-                    '8ball': 'All matches are random!'
                 }
             elif where == "command_examples":
                 locale = {
@@ -348,3 +365,31 @@ def translate(where, str, language):
 def getLanguages():
     languages = {'ru_RU': 'Russian', 'en_US': 'English'}
     return languages
+
+def formatDate(datetime, size, language):
+    if(language == 'ru_RU'):
+        if(size == 'full'):
+            days_of_week = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+            months = ['', 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г. в {datetime.hour:02d}:{datetime.minute:02d}:{datetime.second:02d}'
+        elif(size == 'normal'):
+            days_of_week = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+            months = ['', 'янв.', 'фев.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.']
+            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г. в {datetime.hour:02d}:{datetime.minute:02d}:{datetime.second:02d}'
+        elif(size == 'compact'):
+            days_of_week = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+            months = ['', 'янв.', 'фев.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.']
+            return f'{days_of_week[datetime.weekday()]}, {datetime.day} {months[datetime.month]} {datetime.year} г.'
+    else:
+        if(size == 'full'):
+            days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+            months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'September', 'November', 'December']
+            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year} at {datetime.hour:02d}:{datetime.minute:02d}:{datetime.second:02d}'
+        elif(size == 'normal'):
+            days_of_week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year} at {datetime.hour:02d}:{datetime.minute:02d}:{datetime.second:02d}'
+        elif(size == 'compact'):
+            days_of_week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            return f'{days_of_week[datetime.weekday()]}, {months[datetime.month]} {datetime.day}, {datetime.year}'

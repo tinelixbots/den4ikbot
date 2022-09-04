@@ -52,7 +52,12 @@ bot.remove_command('help')
 bot.add_cog(Listeners(bot, database, cursor))
 bot.add_cog(Commands(bot, database, cursor))
 
-bot.commands_list = ['help', 'about', 'user', 'guild', 'avatar', '8ball', 'rngen', 'calc', 'ping', 'settings']
+bot.commands_list = {
+        'main': ['help', 'about', 'user', 'guild', 'ping'],
+        'fun': ['8ball', 'rngen'],
+        'personalization': ['settings'],
+        'other': ['calc']
+    }
 
 language = 'ru_RU'
 user_col = None

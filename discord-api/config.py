@@ -14,8 +14,8 @@ tokens = {
 
 config = {
     'name': 'Den4ik Bot',
-    'version': '0.3.1',
-    'version_date': '2022-08-31',
+    'version': '0.3.2',
+    'version_date': '2022-09-04',
     'prefix': '+',
     'accent_def': 0xa55bfd,
     'accent_err': 0xff4444,

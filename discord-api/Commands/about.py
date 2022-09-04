@@ -81,7 +81,7 @@ async def editEmbed(ctx, bot, config, links, language, disnake, translator, pyth
                 translator.translate('embed_fields', 'about_devsf2', language), translator.translate('embed_fields', 'about_devsv2', language).format(dev.name, dev.discriminator, codev.name, codev.discriminator), inline=True
             )
     msg_embed.add_field(
-        translator.translate('embed_fields', 'about_regdf', language), translator.translate('embed_fields', 'about_regdv', language).format(bot.user.created_at.strftime("%Y-%m-%d %H:%M:%S")), inline=True
+        translator.translate('embed_fields', 'about_regdf', language), translator.translate('embed_fields', 'about_regdv', language).format(translator.formatDate(bot.user.created_at, 'normal', language)), inline=True
     )
     msg_embed.add_field(
         translator.translate('embed_fields', 'about_statsf', language), translator.translate('embed_fields', 'about_statsv', language).format(len(bot.guilds), len(bot.users)), inline=True
