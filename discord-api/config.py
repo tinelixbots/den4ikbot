@@ -29,6 +29,6 @@ links = {
     'invite': 'https://discord.com/api/oauth2/authorize?client_id=1009762625158127636&permissions=2147862592&scope=bot',
     'support': 'https://discord.gg/fHStmPJ35W',
     'website': '',
-    'repo': 'https://github.com/den4ikbot/den4ikbot',
+    'repo': 'https://github.com/tinelixbots/den4ikbot',
     'youtube': 'https://www.youtube.com/channel/UCmliSc1cdfogZHeGb_UJdfw'
 }
